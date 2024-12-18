@@ -1,4 +1,5 @@
 from pprint import pp
+from random import randint
 
 # Класс хеш-таблицы
 class HashTable:
@@ -22,7 +23,7 @@ class HashTable:
 
 
 # Хеш-функция
-HT_LEN = 15
+HT_LEN = 2
 
 def get_hash(string: str) -> int:
     
@@ -33,12 +34,18 @@ def get_hash(string: str) -> int:
 
 # Функция генерации строки длины m
 def get_str(m):
-    return "".join([chr(i + 97 * (m - 1)) for i in range(m)])
+    return "".join([chr(randint(97, 122)) for i in range(m)])
 
 if __name__ == "__main__":
     hash_table = HashTable(size=HT_LEN, hash_func=get_hash)
 
+    # Генерация N^2 строк
+    n = [get_str(10) for _ in range(HT_LEN ** 2)]
+    # Заполнение хеш-таблицы
+    for i in n:
+        hash_table.insert(i)
+    
+    pp(hash_table.table)
+    # Вывод коллизий
     for chain_length in hash_table:
         print(chain_length)
-
-    # pp(hash_table.table)

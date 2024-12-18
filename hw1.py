@@ -1,12 +1,12 @@
 from functools import reduce
-from math import sqrt
+from math import sqrt, sin
 from random import randint
 
 def gen_prng(seed):
     x = seed
     def prng():
         nonlocal x
-        x = ((x * (x - 1)) + 12312 * (x + 1)) % 10
+        x = int(abs(sin(x) * 10000)) % 10
         return x
     return prng
 
@@ -25,5 +25,17 @@ def evaluate(my_prng, tries):
     print(f"Плотность: {density}")
     print(f"Среднеквадратичное отклонение: {s}")
 
+    seen = set()
+    while True:
+        val = my_prng()
+        if val in seen:
+            break
+        seen.add(val)
+
+    print(f"Длина периода: {len(seen)}")
+
+
 my_prng = gen_prng(1)
+# for i in range(10):
+    # print(my_prng())
 evaluate(my_prng, 4000)
