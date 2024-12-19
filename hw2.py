@@ -23,7 +23,7 @@ class HashTable:
 
 
 # Хеш-функция
-HT_LEN = 2
+HT_LEN = 10
 
 def get_hash(string: str) -> int:
     
@@ -33,7 +33,7 @@ def get_hash(string: str) -> int:
     return hash_value
 
 # Функция генерации строки длины m
-def get_str(m):
+def get_str(m: int) -> str:
     return "".join([chr(randint(97, 122)) for i in range(m)])
 
 if __name__ == "__main__":

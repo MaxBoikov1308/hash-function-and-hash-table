@@ -2,16 +2,16 @@ from functools import reduce
 from math import sqrt, sin
 from random import randint
 
-def gen_prng(seed):
+def gen_prng(seed: int) -> callable:
     x = seed
-    def prng():
+    def prng() -> int:
         nonlocal x
         x = int(abs(sin(x) * 10000)) % 10
         return x
     return prng
 
 
-def evaluate(my_prng, tries):
+def evaluate(my_prng: callable, tries: int) -> None:
     f = [0 for i in range(10)]
 
     for i in range(tries):
