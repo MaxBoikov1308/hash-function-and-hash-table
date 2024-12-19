@@ -28,6 +28,7 @@ HT_LEN = 10
 def get_hash(string: str) -> int:
     
     hash_value = 1
+    # случайным образом выбираем чмсло через битовое представление символов
     for char in string:
         hash_value = (hash_value * 31 + ord(char)) % HT_LEN
     return hash_value
@@ -38,14 +39,14 @@ def get_str(m: int) -> str:
 
 if __name__ == "__main__":
     hash_table = HashTable(size=HT_LEN, hash_func=get_hash)
-
     # Генерация N^2 строк
     n = [get_str(10) for _ in range(HT_LEN ** 2)]
     # Заполнение хеш-таблицы
     for i in n:
         hash_table.insert(i)
-    
+
     pp(hash_table.table)
     # Вывод коллизий
     for chain_length in hash_table:
         print(chain_length)
+        

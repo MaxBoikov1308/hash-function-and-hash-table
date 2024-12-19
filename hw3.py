@@ -86,6 +86,7 @@ def sha1(message: str) -> str:
     # Выводим результат в шестнадцатеричном виде
     return makeHashStr(H)
 
+# Спасибо за "подарок"
 def makeHashStr(H: list) -> str:
     res = hex(reduce(lambda a, b: (a << 32) | b, H, 0))[2:]
     return res if len(res) == 40 else '0' * (40 - len(res)) + res
