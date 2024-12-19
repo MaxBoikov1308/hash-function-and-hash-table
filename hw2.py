@@ -27,7 +27,7 @@ HT_LEN = 10
 
 def get_hash(string: str) -> int:
     
-    hash_value = 0
+    hash_value = 1
     for char in string:
         hash_value = (hash_value * 31 + ord(char)) % HT_LEN
     return hash_value
